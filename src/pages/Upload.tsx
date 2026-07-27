@@ -5,12 +5,13 @@ import { toast } from 'sonner'
 import axios from 'axios'
 
 import api from '../api/axios'
+import { getUsuario } from '../api/auth'
 import { Arquivo } from '../models/types'
 import { Context } from '../context/context'
 
 export default function Upload() {
   const navigate = useNavigate()
-  const { usuarios } = useContext(Context)
+  const { usuarioAtual, usuarios } = useContext(Context)
 
   const { register, handleSubmit, watch, setValue, formState: { errors, isSubmitting } } = useForm<Arquivo>({
     defaultValues: {
@@ -43,6 +44,13 @@ export default function Upload() {
       return
     }
 
+    const usuarioId = usuarioAtual?.usuario || getUsuario() || usuarios[0]?.usuario
+
+    if (!usuarioId) {
+      toast.error('Faça login antes de enviar o arquivo.')
+      return
+    }
+
     const formData = new FormData()
 
     formData.append('nome', nome)
@@ -52,7 +60,7 @@ export default function Upload() {
 
     try {
       const response = await api.put("/arquivos", {
-        usuario_id: usuarios[0].nome,
+        usuario_id: usuarioId,
         nome_arquivo: nomeArquivo
       })
 

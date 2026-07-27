@@ -24,11 +24,18 @@ export function Provider({ children }: ProviderProps) {
     useEffect(() => {
         // Auto-login em ambiente dev: garante que a UI mostre o menu protegido
         const token = localStorage.getItem('token')
+        const usuarioSalvo = localStorage.getItem('usuario')
+
         if (!token) {
             localStorage.setItem('token', 'dev-token')
-            localStorage.setItem('usuario', usuarios[0].usuario)
         }
 
+        if (usuarioSalvo) {
+            setUsuarioAtual({ ...usuarios[0], usuario: usuarioSalvo })
+            return
+        }
+
+        localStorage.setItem('usuario', usuarios[0].usuario)
         setUsuarioAtual(usuarios[0])
     }, [])
 

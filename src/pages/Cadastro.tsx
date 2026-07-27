@@ -19,7 +19,7 @@ export default function Cadastro() {
     if (usuarioDuplicado.length > 0) { throw new AxiosError("Usuário já cadastrado.") }
 
     await new Promise(resolve => setTimeout(resolve, 1200));
-    setUsuarios([...usuarios, { nome, usuario, senha }])
+    setUsuarios(prev => [...prev, { nome, usuario, senha }])
   }
 
   async function handleRegister({ nome, usuario, senha }: Usuario) {

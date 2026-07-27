@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { Dispatch, ReactNode, SetStateAction } from "react";
 
 export interface Arquivo {
   nome: string
@@ -26,7 +26,7 @@ export type ContextType = {
   arquivos: Arquivo[]
 
   setUsuarioAtual: (usuario: Usuario) => void
-  setUsuarios: (usuarios: Usuario[]) => void
+  setUsuarios: Dispatch<SetStateAction<Usuario[]>>
   setArquivos: (arquivos: Arquivo[]) => void
 }
 
