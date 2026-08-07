@@ -252,3 +252,7 @@ services:
 
 A arquitetura do projeto combina um frontend React moderno com deploy em AWS Amplify e empacotamento em Docker. O arquivo `amplify.yml` define a pipeline de build e publicação, enquanto o `Dockerfile` demonstra a estratégia de containerização para servir a aplicação via NGINX. Em conjunto, isso resulta em uma solução leve, escalável e simples de publicar, com foco em entrega estática e integração com uma API externa para autenticação e armazenamento de arquivos.
 
+## Visualização do Projeto (seção onde adiciona os arquivos)
+<img width="1346" height="951" alt="imagem" src="https://github.com/user-attachments/assets/c0c8e27c-5c95-42f4-85b5-9808a1e1fd3e" />
+
+
